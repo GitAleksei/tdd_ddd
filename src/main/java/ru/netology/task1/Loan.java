@@ -42,15 +42,18 @@ public class Loan {
     }
 
     public double getMonthlyPayment() {
-        return 0;
+        double monthlyInterestRate = annualInterestRate / 1200;
+        double monthlyPayment = loanAmount * monthlyInterestRate / (1 - (1 / Math.pow(1 + monthlyInterestRate, numberOfYears * 12)));
+        return monthlyPayment;
     }
 
     public double getTotalPayment() {
-        return 0;
+        double totalPayment = getMonthlyPayment() * numberOfYears * 12;
+        return totalPayment;
     }
 
     public double getOverpayment() {
-        return 0;
+        return getTotalPayment() - loanAmount;
     }
 
     public java.util.Date getLoanDate() {
